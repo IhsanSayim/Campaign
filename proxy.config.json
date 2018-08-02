@@ -1,0 +1,13 @@
+{
+  "/data/*":{
+    "target": "http://api.openweathermap.org",
+    "secure": false,
+    "logLevel":"debug"
+  },
+  "/api/*":{
+    "target": "https://demo-api-57.herokuapp.com",
+    "secure": false,
+    "changeOrigin":true
+  }
+
+}

@@ -1,0 +1,15 @@
+.effectfront {
+  border: none;
+  margin: 0 auto;
+  transition: all 0.6s;
+}
+.effectfront:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(3) translate(35px,-15px);
+  transition: all 1.5s;
+  position:relative;
+  z-index:1;
+  -webkit-transition: all 0.6s;
+}

@@ -1,0 +1,18 @@
+<nb-card>
+  <nb-card-header>
+    Kampanya Listesi
+    <button type="submit" class="btn btn-success pull-right" (click)="addCampaign()">Kampanya Ekle</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings"
+                     [source]="source"
+                     (deleteConfirm)="onDeleteConfirm($event)"
+                     (userRowSelect)="onUserRowSelect($event)"
+                     (custom)="deneme($event)"
+                     (edit)="editFunction($event)"
+                     (delete)="deleteFunction($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+

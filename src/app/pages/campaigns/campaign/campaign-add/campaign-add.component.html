@@ -1,0 +1,131 @@
+<nb-card>
+  <nb-card-header *ngIf="mode=='add';else edit">Kampanya Ekle</nb-card-header>
+  <ng-template #edit>
+    <nb-card-header>Kampanya Güncelle</nb-card-header>
+  </ng-template>
+  <nb-card-body>
+    <form [formGroup]="campaignForm" (ngSubmit)="onSubmit(campaignForm.value)">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Kampanya Başlığı" formControlName="campaignName">
+            <!-- <span *ngIf="!campaignForm.get('campaignName').valid&&campaignForm.get('campaignName').touched">Kampanya Adı Girin!</span>-->
+          </div>
+          <div class="form-group">
+            <!-- <label for="description">Description</label>-->
+            <textarea id="description" type="text" class="form-control" formControlName="campaignDescription"
+                      placeholder="Kampanya Açıklaması"
+                      rows="4"></textarea>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Başlangıç Tarihi</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" type="text"
+                         ngbDatepicker #d="ngbDatepicker" formControlName="startDate">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                      <img src="../assets/images/calendar-icon.svg"
+                           style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Bitiş Tarihi</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                         ngbDatepicker #dd="ngbDatepicker" formControlName="endDate" (change)="onDateSelected($event)">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="dd.toggle()" type="button">
+                      <img src="../assets/images/calendar-icon.svg"
+                           style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <div class="img-container">
+              <!-- <input type="file" class="form-control"
+                      formControlName="campaignImagePath"
+                      (change)="onFileSelected($event)" #campaignImagePath>-->
+              <label class="custom-file-upload" [ngStyle]="{'z-index':url ?-1:0}">
+                <i class="fa fa-cloud-upload"></i> Resim Seçin
+              </label>
+              <label for="file-upload" class="custom-file-upload">
+              </label>
+              <input id="file-upload" type="file" class="form-control"
+                     formControlName="campaignImagePath"
+                     (change)="onFileSelected($event)" #campaignImagePath>
+              <img [src]="url" alt="" style="max-width: 100%;max-height: 100%;">
+            </div>
+
+          </div>
+
+
+          <!--  <div class="radio" *ngFor="let s of status">
+              <label>
+                <input type="radio"
+                       formControlName="campaignStatus"
+                       [value]="s.status">{{s.text}}
+              </label>
+            </div>-->
+        </div>
+      </div>
+      <!--    <div class="form-group">
+            <input type="text" class="form-control" placeholder="Kampanya Url" formControlName="imagePath">
+          </div>-->
+      <!--    <div class="form-group">
+            <input type="text" class="form-control" placeholder="Kampanya Aktif" formControlName="active">
+          </div>-->
+      <div class="form-group">
+        <!--  <div class="demo-radio col-sm-4">
+            <label class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" name="act" formControlName="act" value="0" checked>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Aktif</span>
+            </label>
+            <label class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" name="act" formControlName="act" value="1">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Pasif</span>
+            </label>
+          </div>-->
+      </div>
+      <!-- <label for="file-uploadd" class="custom-file-upload pull-right" *ngIf="!url">
+         <i class="fa fa-cloud-upload"></i> Yeniden Seç
+       </label>
+       <input id="file-uploadd" type="file" class="form-control"
+              formControlName="campaignImagePath"
+              (change)="onFileSelected($event)" #campaignImagePath>-->
+      <div class="row">
+        <div class="col-md-7">
+        </div>
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-success btn-block" [disabled]="!campaignForm.valid"
+                      *ngIf="mode=='add';else editt">Ekle
+              </button>
+              <ng-template #editt>
+                <button type="submit" class="btn btn-success btn-block" [disabled]="!campaignForm.valid">Kaydet
+                </button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+
